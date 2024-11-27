@@ -1,7 +1,6 @@
 @import "https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css";
 
 nav {
-    position: sticky;
     top: 0;
     background-color: #032e5a;
     padding: 15px 0;
@@ -47,7 +46,6 @@ nav a:hover:before {
 }
 
 footer {
-    position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;

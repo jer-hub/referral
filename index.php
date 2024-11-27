@@ -41,7 +41,7 @@ session_start();
             </section>
         </div>
     </div>
-    <?php include("_partials/footer.php"); ?>
+    <?php include("_partials/_footer.php"); ?>
 </body>
 
 </html>
