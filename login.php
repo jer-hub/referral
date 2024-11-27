@@ -76,7 +76,7 @@ $conn->close();
 </head>
 <body>
     <div>
-        <img src="dcnhs.png" alt="">
+        <img src="media\logo\dcnhs.png" alt="">
     </div>
     <div class="container">
         <header>

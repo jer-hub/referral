@@ -60,6 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -128,18 +129,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     </style>
 </head>
+
 <body>
-     <!-- Navigation Bar -->
-     <nav>
-        <ul>
-            <li><a href="index.php">Home</a></li>
-            <?php if (isset($_SESSION['username'])): ?>
-                <li><a href="logout.php">Logout</a></li>
-            <?php else: ?>
-                <li><a href="login.php">Login</a></li>
-            <?php endif; ?>
-        </ul>
-    </nav>
+    <?php include("_partials/_navbar.php"); ?>
 
     <!-- Booking Session Form -->
     <div class="booking-form">
@@ -152,16 +144,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <?php endif; ?>
         <form method="post" action="">
             <label for="facilitator_firstname">Facilitator First Name:</label>
-            <input type="text" id="facilitator_firstname" name="facilitator_firstname" value="<?php echo htmlspecialchars($facilitator_firstname); ?>" required>
+            <input type="text" id="facilitator_firstname" name="facilitator_firstname"
+                value="<?php echo htmlspecialchars($facilitator_firstname); ?>" required>
 
             <label for="facilitator_lastname">Facilitator Last Name:</label>
-            <input type="text" id="facilitator_lastname" name="facilitator_lastname" value="<?php echo htmlspecialchars($facilitator_lastname); ?>" required>
+            <input type="text" id="facilitator_lastname" name="facilitator_lastname"
+                value="<?php echo htmlspecialchars($facilitator_lastname); ?>" required>
 
             <label for="schedule">Scheduled Date and Time:</label>
-            <input type="datetime-local" id="schedule" name="schedule" value="<?php echo htmlspecialchars($schedule); ?>" required>
+            <input type="datetime-local" id="schedule" name="schedule"
+                value="<?php echo htmlspecialchars($schedule); ?>" required>
 
             <label for="resultid">Result ID:</label>
-            <input type="text" id="resultid" name="resultid" value="<?php echo htmlspecialchars($resultid); ?>" required>
+            <input type="text" id="resultid" name="resultid" value="<?php echo htmlspecialchars($resultid); ?>"
+                required>
 
             <button type="submit">Create Booking Session</button>
         </form>
@@ -172,4 +168,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <p>&copy; <?php echo date("Y"); ?> Referral System. All rights reserved.</p>
     </footer>
 </body>
+
 </html>
