@@ -1,0 +1,419 @@
+/* Reset some default styles */
+body, h1, h2, p, ul {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    background-color: #f5f5f5;
+    
+    
+}
+
+/* Navigation Bar */
+.logo {
+    height: 40px; /* Adjust height as needed */
+    position: absolute;
+    top: 5px;
+    left: 10px;
+    list-style: none;
+    margin: 0;
+}
+
+nav {
+    position: static;
+    top: 0;
+    background-color: #4F003B;
+    padding: 10px 0;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+nav a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
+    transition: color 0.3s ease;
+    position: relative;
+    margin: 0 20px;
+}
+
+nav a:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #ecf0f1;
+    visibility: hidden;
+    transform: scaleX(0);
+    transition: all 0.3s ease-in-out;
+}
+
+nav a:hover {
+    color: #ecf0f1;
+}
+
+nav a:hover:before {
+    visibility: visible;
+    transform: scaleX(1);
+}
+
+/* Style for Logout Button */
+.logout-btn {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    list-style: none;
+    margin: 0;
+}
+
+.logout-btn form {
+    margin: 0;
+}
+
+.logout-btn button {
+    background-color: #892145;
+    border: none;
+    cursor: pointer;
+    color: #ffffff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.logout-btn button:hover {
+    background-color: #ff0059;
+}
+
+/* Style for Hero Section */
+.hero-section {
+    background-image: url('../background/homepage.jpg'); /* Replace with the path to your image */
+    background-size: cover;
+    background-position: center;
+    color: #4F003B; /* Text color on the background image, adjust as needed */
+    text-align: center;
+    padding: 100px 0; /* Adjust padding as needed */
+}
+
+.hero-section h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+.hero-section p {
+    font-size: 1.2em;
+    margin-bottom: 40px;
+}
+
+.hero-section a {
+    background-color: #892145;
+    color: #fff;
+    padding: 15px 30px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.hero-section a:hover {
+    background-color: #6c183c;
+}
+/* Direction Section */
+
+
+.directions h2 {
+    margin-left: 20px;
+    color: #4F003B;
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.directions p {
+    margin-left: 20px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #34495e;
+}
+
+.rating-scale {
+    border: 2px solid #4F003B;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    background-color: #de9dce;
+    color: #34495e;
+    margin-top: 20px;
+    margin-left: 20px;
+    text-align: left; /* Align the text to the left */
+    max-width: 700px; /* Adjust the max-width based on your layout */
+    overflow: auto;
+}
+.rating-scale::before {
+    content: "The rating scale is as follows: ";
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.rating-scale span {
+    display: block;
+    margin-top: 10px;
+}
+
+.rating-scale span::before {
+    content: attr(data-rating) " – ";
+    font-weight: bold;
+}
+
+.rating-scale span::after {
+    content: attr(data-description);
+    margin-left: 20px; /* Add margin to separate rating and description */
+}
+
+
+
+/* Content Section */
+
+.content-section {
+    text-align: center; /* Center the content */
+    padding: 60px 20px;
+}
+
+.content-section ul {
+    list-style: none;
+}
+
+.content-section h2 {
+    color: #4F003B;
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.content-section p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #34495e;
+}
+
+.content-section a {
+    display: inline-block;
+    background-color: #4F003B;
+    color: #fff;
+    padding: 12px 24px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.content-section a:hover {
+    background-color: #27ae60;
+}
+
+.content-section form {
+    margin: 20px 0;
+}
+
+.content-section fieldset {
+    border: 2px solid #4F003B;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.content-section legend {
+    font-weight: bold;
+    color: #4F003B;
+    font-size: 20px;
+}
+
+.content-section label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.content-section input[type="radio"] {
+    margin-right: 5px;
+}
+
+/* Footer */
+footer {
+    background-color: #4F003B;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+    .hero-section h1 {
+        font-size: 28px;
+    }
+
+    .hero-section p {
+        font-size: 16px;
+    }
+
+    .content-section h2 {
+        font-size: 24px;
+    }
+
+    .content-section p {
+        font-size: 14px;
+    }
+}
+
+
+/* Additional Styles for Question Forms */
+form {
+    margin-top: 20px;
+}
+
+fieldset {
+    border: 2px solid #4CAF50;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+legend {
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+label {
+    display: inline-block;
+    margin-right: 15px;
+    margin-bottom: 10px;
+}
+
+input[type="radio"] {
+    margin-right: 5px;
+}
+
+/* Updated Button Styles */
+.button-container {
+    margin-top: 20px;
+}
+
+.submit-assessment {
+    background-color: #892145;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.submit-assessment:hover {
+    background-color: #45a049; /* Lighter green color on hover */
+}
+
+/* Additional Styles for Directions */
+.directions, .rating-scale {
+    margin-bottom: 20px;
+}
+
+.button-container {
+    margin-top: 20px;
+}
+
+.submit-assessment {
+    background-color: #3498db;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.submit-assessment:hover {
+    background-color: #2980b9; /* Darker blue color on hover */
+}
+
+/* Updated Button Styles */
+.radio-options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.radio-options input[type="radio"] {
+    display: none; /* Hide the default radio buttons */
+}
+
+.radio-options label {
+    display: inline-block;
+    cursor: pointer;
+    padding: 10px 20px;
+    border: 2px solid #4F003B;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.radio-options label:hover {
+    background-color: #4F003B;
+    color: #ffffff;
+}
+
+.radio-options input[type="radio"]:checked + label {
+    background-color: #4F003B;
+    color: #ffffff;
+}
+
+
+/* Additional Styles for Directions */
+.directions, .rating-scale {
+    margin-bottom: 20px;
+}
+
+.button-container {
+    margin-top: 20px;
+}
+
+.submit-assessment {
+    background-color: #a42954;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.submit-assessment:hover {
+    background-color: #CBB7E8; /* Darker blue color on hover */
+}
+
+/* Fieldset styles */
+fieldset {
+    border: 2px solid #4F003B; /* Border color */
+    border-radius: 10px; /* Rounded corners */
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #ffffff;
+}
+
+legend {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #4F003B;
+    padding: 5px 10px;
+    border: 2px solid #4F003B;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}

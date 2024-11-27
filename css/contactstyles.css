@@ -1,0 +1,170 @@
+/* Reset some default styles */
+body, h1, h2, p, ul {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background-color: #f5f5f5;
+}
+.logo {
+    height: 40px; /* Adjust height as needed */
+    position: absolute;
+    top: 5px;
+    left: 10px;
+    list-style: none;
+    margin: 0;
+}
+
+/* Navigation Bar */
+nav {
+    position: sticky;
+    top: 0;
+    background-color: #4F003B;
+    padding: 10px 0;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center; /* Center the items */
+}
+
+nav a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
+    transition: color 0.3s ease;
+    position: relative;
+    margin: 0 20px; /* Add spacing between items */
+}
+
+nav a:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #ecf0f1;
+    visibility: hidden;
+    transform: scaleX(0);
+    transition: all 0.3s ease-in-out;
+}
+
+nav a:hover {
+    color: #ecf0f1;
+}
+
+nav a:hover:before {
+    visibility: visible;
+    transform: scaleX(1);
+}
+
+/* Style for Logout Button */
+.logout-btn {
+    position: absolute;
+    top: 5px; /* Adjust the top position as needed */
+    right: 10px; /* Adjust the right position as needed */
+    list-style: none;
+    margin: 0;
+}
+
+.logout-btn form {
+    margin: 0;
+}
+
+.logout-btn button {
+    background-color: #892145; /* Darker green color */
+    border: none;
+    cursor: pointer;
+    color: #ffffff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.logout-btn button:hover {
+    background-color: #CBB7E8; /* Darker green color on hover */
+}
+
+.container {
+    text-align: center;
+}
+/* Style for Form Button */
+.contact-form button {
+    background-color: #892145; /* Darker green color */
+    border: none;
+    cursor: pointer;
+    color: #ffffff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.contact-form button:hover {
+    background-color: #CBB7E8; /* Darker green color on hover */
+}
+
+/* Style for Form Container */
+.contact-form {
+    background-color: #fff; /* Form background color */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    max-width: 400px; /* Adjust the max width as needed */
+    margin: 0 auto; /* Center the form horizontally */
+}
+
+/* Style for Form Labels */
+.contact-form label {
+    display: block;
+    margin-bottom: 8px;
+    color: #4F003B; /* Label color */
+}
+
+/* Style for Form Inputs */
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Style for Submit Button */
+.contact-form button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    background-color: #4F003B; /* Button background color */
+    color: white; /* Button text color */
+}
+
+/* Hover Effect for Submit Button */
+.contact-form button[type="submit"]:hover {
+    background-color: #892145; /* Darker button background color on hover */
+}
+
+
+/* Footer */
+footer {
+    background-color: #4F003B;
+    color: white;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 10px 0;
+    box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+}

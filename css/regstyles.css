@@ -1,0 +1,138 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-image: url("../background/background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Set min-height to ensure content stretches to at least full height */
+    position: relative; /* Set position to relative for absolute positioning of container */
+}
+
+nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.0); /* Change to transparent if needed */
+    z-index: 999; /* Ensure it's above other content */
+}
+
+.logo {
+    width: 550px; /* Adjust the width as needed */
+    height: 100px; /* Maintain aspect ratio */
+    margin: 10px; /* Adjust margin as needed */
+}
+
+.container {
+    position: absolute;
+    top: 0;
+    right: 0; /* Adjust right position if needed */
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    width: 100%;
+    max-width: 400px;
+    margin: 20px;
+}
+
+header {
+    background-color: #032e5a;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+form {
+    padding: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+input, select {
+    width: calc(100% - 22px); /* Adjust width to accommodate padding and border */
+    padding: 10px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+button {
+    width: calc(100% - 22px); /* Adjust width to accommodate padding and border */
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    background-color: #032e5a;
+    color: #fff;
+}
+
+a.login-link {
+    margin-top: 10px;
+    text-decoration: none;
+    color: #3498db;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+.register {
+    background-color: #032e5a; /* Green background color */
+    color: white; /* White text color */
+    padding: 15px 20px; /* Padding around the text */
+    font-size: 16px; /* Font size */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Cursor style */
+    transition: background-color 0.3s; /* Smooth color transition */
+    margin-bottom: 10px; /* Add some space between the button and the link */
+}
+
+/* Hover effect for the Register button */
+.register:hover {
+    background-color: #CBB7E8; /* Darker green on hover */
+}
+
+/* Style for the login link */
+.login-link {
+    color: #3498db; /* Blue color for the link */
+    text-decoration: none; /* Remove underlines */
+    font-size: 14px; /* Font size */
+    transition: color 0.3s; /* Smooth color transition */
+}
+
+/* Hover effect for the login link */
+.login-link:hover {
+    color: #2980b9; /* Darker blue on hover */
+}
+
+.footer {
+    position: absolute;
+    bottom: -300px;
+    width: 100%;
+    background-color: #032e5a; /* Background color */
+    color: white; /* Text color */
+    text-align: center; /* Center-align text */
+    padding: 1px; /* Padding */
+    z-index: -1;
+}

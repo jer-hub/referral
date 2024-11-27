@@ -1,0 +1,106 @@
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(90deg, #CBB7E8, #4F003B); /* Gradient background */
+
+}
+
+nav {
+    background-color: #892145; /* Dark background for the navbar */
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    height: 40px; /* Adjust height as needed */
+}
+
+.logout-btn {
+    padding: 8px 12px;
+    background-color: #dc3545; /* Red color for logout button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold; /* Make the font bold */
+    font-family: Arial, sans-serif; /* Use Arial font for consistency */
+}
+
+.logout-btn:hover {
+    background-color: #c82333; /* Darker shade of red on hover */
+}
+
+/* Style for the navigation links */
+nav ul {
+    list-style-type: none; /* Remove bullet points from the list */
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline; /* Display list items horizontally */
+    margin-right: 20px; /* Adjust spacing between list items */
+}
+
+nav ul li a {
+    text-decoration: none; /* Remove underline from anchor links */
+    color: white;
+    font-size: 16px;
+    font-weight: bold; /* Make the font bold */
+    font-family: Arial, sans-serif; /* Use Arial font for consistency */
+}
+
+nav ul li a:hover {
+    text-decoration: underline; /* Underline on hover */
+    color: #f0f0f0; /* Change text color on hover */
+}
+
+.register-form {
+    max-width: 400px;
+    margin: 50px auto;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-group input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 15px 20px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.form-group input[type="submit"]:hover {
+    background-color: #45a049;
+}

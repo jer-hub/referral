@@ -1,0 +1,159 @@
+/* adminstyles.css */
+
+/* Reset some default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(90deg, #CBB7E8, #892145); /* Gradient background */
+
+}
+
+nav {
+    background-color: #5a0845; /* Dark background for the navbar */
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    height: 40px; /* Adjust height as needed */
+}
+
+.logout-btn {
+    padding: 8px 12px;
+    background-color: #dc3545; /* Red color for logout button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold; /* Make the font bold */
+    font-family: Arial, sans-serif; /* Use Arial font for consistency */
+}
+
+.logout-btn:hover {
+    background-color: #c82333; /* Darker shade of red on hover */
+}
+
+/* Style for the navigation links */
+nav ul {
+    list-style-type: none; /* Remove bullet points from the list */
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline; /* Display list items horizontally */
+    margin-right: 20px; /* Adjust spacing between list items */
+}
+
+nav ul li a {
+    text-decoration: none; /* Remove underline from anchor links */
+    color: white;
+    font-size: 16px;
+    font-weight: bold; /* Make the font bold */
+    font-family: Arial, sans-serif; /* Use Arial font for consistency */
+}
+
+nav ul li a:hover {
+    text-decoration: underline; /* Underline on hover */
+    color: #f0f0f0; /* Change text color on hover */
+}
+
+
+.container {
+    max-width: 1200px; /* Limit the width of the content */
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff; /* White background */
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1); /* Soft shadow effect */
+    border-radius: 10px; /* Rounded corners */
+}
+
+.container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #CBB7E8, #892145); /* Gradient background */
+    opacity: 0.8; /* Adjust opacity as needed */
+    z-index: -1;
+    border-radius: 10px; /* Rounded corners */
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: #929292; /* White color for headings */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Text shadow for better visibility */
+}
+
+/* Google Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+.dashboard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px; /* Add gap between stat-containers */
+    font-family: 'Poppins', sans-serif; /* Setting custom font */
+}
+
+.stat-container {
+    width: 250px; /* Adjust width as needed */
+    height: 180px; /* Adjust height as needed */
+    background-color: #dadada; /* Purple color */
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.stat-container:hover {
+    transform: translateY(-5px);
+}
+
+.stat h3 {
+    font-size: 1.5em;
+    color: #7c7c7c;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Add text shadow for effect */
+    transition: transform 0.3s ease;
+}
+
+.stat-container:hover .stat h3 {
+    transform: scale(1.05); /* Add scaling effect on hover */
+}
+
+.stat p {
+    font-size: 1.3em;
+    color: #7c7c7c;
+    margin: 0;
+}
+
+.stat-description {
+    text-align: center;
+    color: #ccc;
+    font-size: 1em;
+    transition: opacity 0.3s ease;
+}
+
+.stat-container:hover .stat-description {
+    opacity: 0.8; /* Reduce opacity on hover */
+}
+
+
+
+
+
+

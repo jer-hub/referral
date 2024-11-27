@@ -1,0 +1,18 @@
+.button-container {
+    text-align: center; /* Align buttons in the center */
+}
+
+.backbtn {
+    /* Style for the button */
+    padding: 10px 20px; /* Adjust padding as needed */
+    background-color: #892145; /* Green background */
+    color: white; /* White text */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Cursor style */
+    font-size: 16px; /* Font size */
+}
+
+.backbtn:hover {
+    background-color: #CBB7E8; /* Darker green when hovered */
+}
