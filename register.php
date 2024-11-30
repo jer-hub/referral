@@ -45,14 +45,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             try {
                 // Insert into `users` table
-                $stmt = $conn->prepare("INSERT INTO users (email, username, password) VALUES (?, ?, ?)");
-                $stmt->bind_param('sss', $email, $username, $hashed_password);
+                $stmt = $conn->prepare("INSERT INTO users (email, username, password, first_name, last_name) VALUES (?, ?, ?, ?, ?)");
+                $stmt->bind_param('sssss', $email, $username, $hashed_password, $firstname, $lastname);
                 $stmt->execute();
+                $user_id = $stmt->insert_id; // Get the inserted user ID
                 $stmt->close();
 
                 // Insert into `user_information` table
-                $stmt = $conn->prepare("INSERT INTO user_information (username, firstname, lastname, gender, contact, department, designation) VALUES (?, ?, ?, ?, ?, ?, ?)");
-                $stmt->bind_param('sssssss', $username, $firstname, $lastname, $gender, $contact, $department, $designation);
+                $stmt = $conn->prepare("INSERT INTO user_information (user_id, gender, contact, department, designation) VALUES (?, ?, ?, ?, ?)");
+                $stmt->bind_param('issss', $user_id, $gender, $contact, $department, $designation);
                 $stmt->execute();
                 $stmt->close();
 
@@ -66,6 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             } catch (Exception $e) {
                 // Rollback on error
                 $conn->rollback();
+                echo $e->getMessage();
                 $feedback = "An error occurred during registration. Please try again.";
             }
         }
@@ -95,6 +97,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div id="feedback-container" class="notification">
             <?php if (!empty($feedback)) echo htmlspecialchars($feedback); ?>
         </div>
+            <label for="designation">Role:</label>
+            <select id="designation" name="designation" required>
+                <option value="student">STUDENT</option>
+                <option value="faculty">FACULTY</option>
+            </select>
+
+            <label for="department">Department:</label>
+            <select id="department" name="department" required>
+                <option value="IBED">IBED</option>
+                <option value="College">COLLEGE</option>
+            </select>
+
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required>
 
@@ -121,20 +135,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <label for="contact">Contact Number:</label>
             <input type="text" id="contact" name="contact" required>
-
-            <label for="department">Department:</label>
-            <select id="department" name="department" required>
-                <option value="English">English</option>
-                <option value="Math">Math</option>
-                <option value="Science">Science</option>
-                <option value="Aralin_Panlipunan">Aralin Panlipunan</option>
-            </select>
-
-            <label for="designation">Designation:</label>
-            <select id="designation" name="designation" required>
-                <option value="teacher">Teacher</option>
-                <option value="master_teacher">Master Teacher</option>
-            </select>
 
             <div class="button-container">
                 <input type="submit" value="Register" name="register" class="register"/>

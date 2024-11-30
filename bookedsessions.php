@@ -3,12 +3,21 @@ session_start();
 require_once "database.php"; // Ensure this file contains the connection setup
 
 // Initialize variables
-$facilitator_firstname = '';
-$facilitator_lastname = '';
+$facilitator_id = '';
 $schedule = '';
 $resultid = '';
 $error = '';
 $success = '';
+
+// Fetch facilitators (users who are admins)
+$facilitatorsQuery = "SELECT id, first_name, last_name FROM users WHERE is_admin = TRUE";
+$facilitatorsResult = $conn->query($facilitatorsQuery);
+$facilitators = [];
+if ($facilitatorsResult->num_rows > 0) {
+    while ($row = $facilitatorsResult->fetch_assoc()) {
+        $facilitators[] = $row;
+    }
+}
 
 // Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -25,28 +34,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($checkUserStmt->num_rows > 0) {
             // User ID exists, proceed with booking insertion
             // Get form data
-            $facilitator_firstname = trim($_POST['facilitator_firstname']);
-            $facilitator_lastname = trim($_POST['facilitator_lastname']);
+            $facilitator_id = trim($_POST['facilitator_id']);
             $schedule = trim($_POST['schedule']);
             $resultid = trim($_POST['resultid']);
 
             // Validate input
-            if (empty($facilitator_firstname) || empty($facilitator_lastname) || empty($schedule) || empty($resultid)) {
+            if (empty($facilitator_id) || empty($schedule) || empty($resultid)) {
                 $error = "All fields are required.";
             } else {
-                // Prepare and execute the insert query
-                $query = "INSERT INTO bookings (user_id, facilitator_firstname, facilitator_lastname, schedule, resultid) VALUES (?, ?, ?, ?, ?)";
-                $stmt = $conn->prepare($query);
-                $stmt->bind_param("issss", $userId, $facilitator_firstname, $facilitator_lastname, $schedule, $resultid); // Bind parameters
-                if ($stmt->execute()) {
-                    $success = "Booking session created successfully!";
-                    // Clear the form fields
-                    $facilitator_firstname = '';
-                    $facilitator_lastname = '';
-                    $schedule = '';
-                    $resultid = '';
+                // Check if the ticket ID already exists for the user
+                $checkTicketQuery = "SELECT id FROM bookings WHERE user_id = ? AND result_id = ?";
+                $checkTicketStmt = $conn->prepare($checkTicketQuery);
+                $checkTicketStmt->bind_param("is", $userId, $resultid); // Bind parameters
+                $checkTicketStmt->execute();
+                $checkTicketStmt->store_result(); // Store the result to check if any rows were returned
+
+                if ($checkTicketStmt->num_rows > 0) {
+                    $error = "This ticket ID already exists in your bookings.";
                 } else {
-                    $error = "Error creating booking session.";
+                    // Prepare and execute the insert query
+                    $query = "INSERT INTO bookings (user_id, facilitator_id, schedule, result_id) VALUES (?, ?, ?, ?)";
+                    $stmt = $conn->prepare($query);
+                    $stmt->bind_param("iiss", $userId, $facilitator_id, $schedule, $resultid); // Bind parameters
+                    if ($stmt->execute()) {
+                        $success = "Booking session created successfully!";
+                        // Clear the form fields
+                        $facilitator_id = '';
+                        $schedule = '';
+                        $resultid = '';
+                    } else {
+                        $error = "Error creating booking session.";
+                    }
                 }
             }
         } else {
@@ -65,108 +83,69 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Booking Session</title>
-    <link rel="stylesheet" type="text/css" href="css/booking.css">
-    <style>
-        .booking-form {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            max-width: 500px;
-            margin: 20px auto;
-        }
-
-        .booking-form h1 {
-            text-align: center;
-            color: #333;
-        }
-
-        .booking-form label {
-            display: block;
-            margin-bottom: 5px;
-            color: #555;
-        }
-
-        .booking-form input[type="text"],
-        .booking-form input[type="datetime-local"] {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-        .booking-form button {
-            width: 100%;
-            padding: 10px;
-            background-color: #5cb85c;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        .booking-form button:hover {
-            background-color: #4cae4c;
-        }
-
-        .error {
-            color: red;
-            text-align: center;
-        }
-
-        .success {
-            color: green;
-            text-align: center;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 20px;
-            color: #777;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" type="text/css" href="static/styles.css">
 </head>
 
 <body>
     <?php include("_partials/_navbar.php"); ?>
 
     <!-- Booking Session Form -->
-    <div class="booking-form">
-        <h1>Create Booking Session</h1>
-        <?php if ($error): ?>
-            <p class="error"><?php echo htmlspecialchars($error); ?></p>
-        <?php endif; ?>
-        <?php if ($success): ?>
-            <p class="success"><?php echo htmlspecialchars($success); ?></p>
-        <?php endif; ?>
-        <form method="post" action="">
-            <label for="facilitator_firstname">Facilitator First Name:</label>
-            <input type="text" id="facilitator_firstname" name="facilitator_firstname"
-                value="<?php echo htmlspecialchars($facilitator_firstname); ?>" required>
+    <div class="container">
+        <div class="box">
+            <h1 class="title has-text-centered">Create Booking Session</h1>
+            <?php if ($error): ?>
+                <p class="notification is-danger"><?php echo htmlspecialchars($error); ?></p>
+            <?php endif; ?>
+            <?php if ($success): ?>
+                <p class="notification is-success"><?php echo htmlspecialchars($success); ?></p>
+            <?php endif; ?>
+            <form method="post" action="">
+                <div class="field">
+                    <label class="label" for="facilitator_id">Facilitator:</label>
+                    <div class="control">
+                        <div class="select">
+                            <select id="facilitator_id" name="facilitator_id" required>
+                                <option value="">Select Facilitator</option>
+                                <?php foreach ($facilitators as $facilitator): ?>
+                                    <option value="<?php echo $facilitator['id']; ?>" <?php echo ($facilitator_id == $facilitator['id']) ? 'selected' : ''; ?>>
+                                        <?php echo htmlspecialchars($facilitator['first_name'] . ' ' . $facilitator['last_name']); ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+                </div>
 
-            <label for="facilitator_lastname">Facilitator Last Name:</label>
-            <input type="text" id="facilitator_lastname" name="facilitator_lastname"
-                value="<?php echo htmlspecialchars($facilitator_lastname); ?>" required>
+                <div class="field">
+                    <label class="label" for="schedule">Scheduled Date and Time:</label>
+                    <div class="control">
+                        <input class="input" type="datetime-local" id="schedule" name="schedule"
+                            value="<?php echo htmlspecialchars($schedule); ?>" required>
+                    </div>
+                </div>
 
-            <label for="schedule">Scheduled Date and Time:</label>
-            <input type="datetime-local" id="schedule" name="schedule"
-                value="<?php echo htmlspecialchars($schedule); ?>" required>
+                <div class="field">
+                    <label class="label" for="resultid">Ticket ID:</label>
+                    <div class="control">
+                        <input class="input" type="text" id="resultid" name="resultid"
+                            value="<?php echo htmlspecialchars($resultid); ?>" required>
+                    </div>
+                </div>
 
-            <label for="resultid">Result ID:</label>
-            <input type="text" id="resultid" name="resultid" value="<?php echo htmlspecialchars($resultid); ?>"
-                required>
-
-            <button type="submit">Create Booking Session</button>
-        </form>
+                <div class="field">
+                    <div class="control is-flex is-justify-content-end">
+                        <button class="button is-link is-light" type="submit">Create Booking Session</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 
     <!-- Footer -->
-    <footer>
-        <p>&copy; <?php echo date("Y"); ?> Referral System. All rights reserved.</p>
-    </footer>
+    <div style="position:fixed; bottom:0; width: 100%">
+        <?php include("_partials/_footer.php"); ?>
+    </div>
 </body>
 
 </html>

@@ -27,6 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
                 session_regenerate_id();
 
                 // Store session variables
+                $_SESSION['is_admin'] = $row['is_admin'];
                 $_SESSION['username'] = $username;
                 $_SESSION['user_id'] = $row['id']; // Store user ID in session
 
